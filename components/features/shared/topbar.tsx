@@ -5,13 +5,17 @@ import { CommandAuthority } from "./command-authority";
 import { ModeToggle } from "./mode-toggle";
 import { Profile } from "@/types/app";
 
+import { MobileNav } from "./mobile-nav";
+
 interface TopbarProps {
     profile: Profile | null
 }
 
 export function Topbar({ profile }: TopbarProps) {
     return (
-        <header className="h-16 border-b border-border bg-card/50 backdrop-blur-sm flex items-center justify-between px-6 sticky top-0 z-30">
+        <header className="h-16 border-b border-border bg-card/50 backdrop-blur-sm flex items-center justify-between px-4 lg:px-6 sticky top-0 z-30 gap-4">
+            <MobileNav profile={profile} />
+
             <div className="flex flex-1 items-center max-w-md">
                 <CommandMenu />
             </div>

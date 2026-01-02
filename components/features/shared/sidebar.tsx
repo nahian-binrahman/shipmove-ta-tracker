@@ -15,6 +15,8 @@ import {
 
 interface SidebarProps {
     role?: string;
+    className?: string;
+    onNavigate?: () => void;
 }
 
 const navigation = [
@@ -26,7 +28,7 @@ const navigation = [
     { name: 'Users', href: '/admin/users', icon: Users, roles: ['admin'], isSubItem: true },
 ];
 
-export function Sidebar({ role }: SidebarProps) {
+export function Sidebar({ role, className, onNavigate }: SidebarProps) {
     const pathname = usePathname();
 
     const filteredNavigation = navigation.filter(item => {
@@ -35,7 +37,7 @@ export function Sidebar({ role }: SidebarProps) {
     });
 
     return (
-        <div className="flex h-full w-64 flex-col bg-card border-r border-border shrink-0">
+        <div className={cn("flex h-full w-64 flex-col bg-card border-r border-border shrink-0", className)}>
             <div className="flex h-16 items-center px-6 border-b border-border gap-3">
                 <div className="bg-primary p-1.5 rounded-lg">
                     <Ship className="h-6 w-6 text-primary-foreground" />
@@ -49,6 +51,7 @@ export function Sidebar({ role }: SidebarProps) {
                         <Link
                             key={item.name}
                             href={item.href}
+                            onClick={onNavigate}
                             className={cn(
                                 "group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-200",
                                 isActive
