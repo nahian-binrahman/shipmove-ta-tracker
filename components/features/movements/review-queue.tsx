@@ -214,6 +214,7 @@ export function ReviewQueue({ initialData }: ReviewQueueProps) {
                 movement={selectedMovement}
                 open={isDrawerOpen}
                 onOpenChange={setIsDrawerOpen}
+                onApprove={() => handleStatusUpdate(selectedMovement?.id, 'approved')}
             />
         </div>
     )

@@ -34,9 +34,10 @@ interface MovementDetailsDrawerProps {
     movement: any | null
     open: boolean
     onOpenChange: (open: boolean) => void
+    onApprove?: () => void
 }
 
-export function MovementDetailsDrawer({ movement, open, onOpenChange }: MovementDetailsDrawerProps) {
+export function MovementDetailsDrawer({ movement, open, onOpenChange, onApprove }: MovementDetailsDrawerProps) {
     const [audit, setAudit] = useState<any[]>([])
     const [loadingAudit, setLoadingAudit] = useState(false)
 
@@ -199,7 +200,9 @@ export function MovementDetailsDrawer({ movement, open, onOpenChange }: Movement
                     </Tabs>
 
                     <DrawerFooter className="px-0 mt-8 gap-3">
-                        <Button className="w-full h-11">Approve Movement</Button>
+                        {movement.status === 'pending' && onApprove && (
+                            <Button className="w-full h-11" onClick={onApprove}>Approve Movement</Button>
+                        )}
                         <DrawerClose asChild>
                             <Button variant="outline" className="w-full h-11">Dismiss</Button>
                         </DrawerClose>
