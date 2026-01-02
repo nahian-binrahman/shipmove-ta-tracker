@@ -17,8 +17,7 @@ Process the tactical transfer of **Lieutenant Commander Arefin** from **Naval He
 1.  **Navigate**: Click **Soldiers** in the sidebar.
 2.  **Action**: Press the **"Add Soldier"** button (Top Right).
 3.  **Data Entry**:
-    *   **Service Number**: `P-3940`
-    *   **Rank**: `Lt Commander`
+    *   **ID No.**: `P-3940`
     *   **Name**: `Arefin`
     *   **Unit**: `Naval HQ`
 4.  **Execute**: Click **"Save Personnel"**.
