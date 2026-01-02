@@ -2,13 +2,14 @@
 
 import { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, PerspectiveCamera, Environment } from '@react-three/drei'
+import { Float, PerspectiveCamera, Environment, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
 
 function Ocean() {
     const mesh = useRef<THREE.Mesh>(null!)
 
     useFrame((state) => {
+        if (!mesh.current) return
         const time = state.clock.getElapsedTime()
         mesh.current.position.y = Math.sin(time * 0.5) * 0.1
         mesh.current.rotation.x = -Math.PI / 2 + Math.cos(time * 0.3) * 0.02
@@ -75,6 +76,13 @@ export default function TacticalShipScene() {
                 dpr={[1, 2]} // Performance: bracket DPR
             >
                 <PerspectiveCamera makeDefault position={[8, 4, 8]} fov={35} />
+                <OrbitControls
+                    enableZoom={false}
+                    autoRotate
+                    autoRotateSpeed={0.5}
+                    maxPolarAngle={Math.PI / 2.5}
+                    minPolarAngle={Math.PI / 3}
+                />
 
                 <ambientLight intensity={0.4} />
                 <pointLight position={[10, 10, 10]} intensity={1.5} />
